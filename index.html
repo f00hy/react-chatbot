@@ -11,7 +11,20 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      const app = <>Hello, world!</>;
+      function ChatInput() {
+        return (
+          <>
+            <input type="text" placeholder="Ask Chatbot anything..." />
+            <button>Send</button>
+          </>
+        );
+      }
+
+      const app = (
+        <>
+          <ChatInput />
+        </>
+      );
 
       const container = document.querySelector('.container');
       ReactDOM.createRoot(container).render(app);
