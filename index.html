@@ -74,6 +74,11 @@
         overflow: scroll;
         scrollbar-width: none;
       }
+
+      .welcome-message {
+        color: #787878;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -175,21 +180,15 @@
       }
 
       function App() {
-        const [chatMessages, setChatMessages] = React.useState([
-          {
-            message: "Hi Chatbot",
-            sender: "user",
-            id: 1
-          },
-          {
-            message: "Hi User",
-            sender: "robot",
-            id: 2
-          },
-        ]);
+        const [chatMessages, setChatMessages] = React.useState([]);
 
         return (
           <div className="app-container">
+            {chatMessages.length === 0 && (
+                <p className="welcome-message">
+                  Welcome to Chatbot! Send a message to get started.
+                </p>
+              )}
             <ChatMessages
               chatMessages={chatMessages}
             />
