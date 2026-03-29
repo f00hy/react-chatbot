@@ -13,45 +13,48 @@
     <script type="text/babel">
       function ChatInput() {
         return (
-          <>
-            <input type="text" placeholder="Ask Chatbot anything..." />
+          <div>
+            <input
+              type="text"
+              placeholder="Ask Chatbot anything..."
+            />
             <button>Send</button>
+          </div>
+        );
+      }
+
+      function ChatMessage({ message, sender }) {
+        return (
+          <div>
+            {sender === "robot" && (
+              <img src="assets/robot.png" width="50" />
+            )}
+            {message}
+            {sender === "user" && (
+              <img src="assets/user.png" width="50" />
+            )}
+          </div>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <ChatInput />
+            <ChatMessage
+              message="Hi Chatbot"
+              sender="user"
+            />
+            <ChatMessage
+              message="Hi User"
+              sender="robot"
+            />
           </>
         );
       }
 
-      function ChatMessage(props) {
-        const message = props.message;
-        const sender = props.sender;
-
-        if (sender === "user") {
-          return (
-            <div>
-              {message}
-              <img src="assets/user.png" width="50" />
-            </div>
-          );
-        }
-        else if (sender === "robot") {
-          return (
-            <div>
-              <img src="assets/robot.png" width="50" />
-              {message}
-            </div>
-          );
-        }
-      }
-
-      const app = (
-        <>
-          <ChatInput />
-          <ChatMessage message="Hi Chatbot" sender="user" />
-          <ChatMessage message="Hi User" sender="robot" />
-        </>
-      );
-
       const container = document.querySelector('.container');
-      ReactDOM.createRoot(container).render(app);
+      ReactDOM.createRoot(container).render(<App />);
     </script>
   </body>
 </html>
