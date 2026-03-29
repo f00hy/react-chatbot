@@ -11,14 +11,36 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function ChatInput() {
+      function ChatInput({ chatMessages, setChatMessages }) {
+        const [inputText, setInputText] = React.useState("");
+
+        function saveInputText(event) {
+          setInputText(event.target.value);
+        }
+
+        function sendMessage() {
+          setChatMessages([
+            ...chatMessages,
+            {
+              message: inputText,
+              sender: "user",
+              id: chatMessages.length + 1
+            },
+          ]);
+          setInputText("");
+        }
+
         return (
           <div>
             <input
               type="text"
               placeholder="Ask Chatbot anything..."
+              onChange={saveInputText}
+              value={inputText}
             />
-            <button>Send</button>
+            <button
+              onClick={sendMessage}
+            >Send</button>
           </div>
         );
       }
@@ -37,20 +59,7 @@
         );
       }
 
-      function ChatMessages() {
-        const chatMessages = [
-          {
-            message: "Hi Chatbot",
-            sender: "user",
-            id: 1
-          },
-          {
-            message: "Hi User",
-            sender: "robot",
-            id: 2
-          },
-        ];
-
+      function ChatMessages({ chatMessages }) {
         return (
           chatMessages.map((chatMessage) => {
             return (
@@ -65,10 +74,28 @@
       }
 
       function App() {
+        const [chatMessages, setChatMessages] = React.useState([
+          {
+            message: "Hi Chatbot",
+            sender: "user",
+            id: 1
+          },
+          {
+            message: "Hi User",
+            sender: "robot",
+            id: 2
+          },
+        ]);
+
         return (
           <>
-            <ChatInput />
-            <ChatMessages />
+            <ChatInput
+              chatMessages={chatMessages}
+              setChatMessages={setChatMessages}
+            />
+            <ChatMessages
+              chatMessages={chatMessages}
+            />
           </>
         );
       }
