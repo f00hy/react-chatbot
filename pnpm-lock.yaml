@@ -14,6 +14,9 @@ importers:
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      supersimpledev:
+        specifier: ^8.6.4
+        version: 8.6.4
     devDependencies:
       '@eslint/js':
         specifier: ^9.39.4
@@ -782,6 +785,10 @@ packages:
   strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
+
+  supersimpledev@8.6.4:
+    resolution: {integrity: sha512-zM011XhEpHtHl9O2S7Oc5nOVNOYkMehE+WjP1MsRO1f8BZbwe/OMG3qXVe3e0s8JUx62hMQQXxbATzRMucUkZQ==}
+    hasBin: true
 
   supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
@@ -1557,6 +1564,8 @@ snapshots:
   source-map-js@1.2.1: {}
 
   strip-json-comments@3.1.1: {}
+
+  supersimpledev@8.6.4: {}
 
   supports-color@7.2.0:
     dependencies:
