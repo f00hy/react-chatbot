@@ -1,6 +1,6 @@
-import { useRef, useEffect } from 'react'
-import ChatMessage from './ChatMessage'
-import './ChatMessages.css'
+import { useRef, useEffect } from 'react';
+import ChatMessage from './ChatMessage';
+import './ChatMessages.css';
 
 function useAutoScroll(dependencies) {
   const containerRef = useRef(null);

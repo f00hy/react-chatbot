@@ -1,24 +1,24 @@
-import { useState } from 'react'
-import { Chatbot } from 'supersimpledev'
-import loadingSpinnerGif from '../assets/loading-spinner.gif'
-import './ChatInput.css'
+import { useState } from 'react';
+import { Chatbot } from 'supersimpledev';
+import loadingSpinnerGif from '../assets/loading-spinner.gif';
+import './ChatInput.css';
 
 function ChatInput({ chatMessages, setChatMessages }) {
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState('');
 
   function saveInputText(event) {
     setInputText(event.target.value);
   }
 
   async function sendMessage() {
-    setInputText("");
+    setInputText('');
 
     const newChatMessages = [
       ...chatMessages,
       {
         message: inputText,
-        sender: "user",
-        id: chatMessages.length + 1
+        sender: 'user',
+        id: chatMessages.length + 1,
       },
     ];
 
@@ -26,9 +26,9 @@ function ChatInput({ chatMessages, setChatMessages }) {
       ...newChatMessages,
       {
         message: <img src={loadingSpinnerGif} className="loading-spinner" />,
-        sender: "robot",
-        id: newChatMessages.length + 1
-      }
+        sender: 'robot',
+        id: newChatMessages.length + 1,
+      },
     ]);
 
     const response = await Chatbot.getResponseAsync(inputText);
@@ -36,8 +36,8 @@ function ChatInput({ chatMessages, setChatMessages }) {
       ...newChatMessages,
       {
         message: response,
-        sender: "robot",
-        id: newChatMessages.length + 1
+        sender: 'robot',
+        id: newChatMessages.length + 1,
       },
     ]);
   }
@@ -51,10 +51,9 @@ function ChatInput({ chatMessages, setChatMessages }) {
         onChange={saveInputText}
         value={inputText}
       />
-      <button
-        className="send-button"
-        onClick={sendMessage}
-      >Send</button>
+      <button className="send-button" onClick={sendMessage}>
+        Send
+      </button>
     </div>
   );
 }
