@@ -1,12 +1,29 @@
-.send-button {
-  background-color: #198754;
-  color: white;
+.send-button,
+.clear-button {
   padding: 10px 20px;
   margin-left: 10px;
   border: none;
   border-radius: 10px;
   font-size: 16px;
   cursor: pointer;
+}
+
+.send-button {
+  background-color: #198754;
+  color: white;
+}
+
+.clear-button {
+  background-color: #e6e6e6;
+  color: black;
+}
+
+.send-button:hover {
+  background-color: #157347;
+}
+
+.clear-button:hover {
+  background-color: #d3d3d3;
 }
 
 .chat-input {
