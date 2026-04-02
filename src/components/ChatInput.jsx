@@ -6,12 +6,18 @@ import './ChatInput.css';
 
 function ChatInput({ chatMessages, setChatMessages }) {
   const [inputText, setInputText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   function saveInputText(event) {
     setInputText(event.target.value);
   }
 
   async function sendMessage() {
+    if (isLoading || inputText === '') {
+      return;
+    }
+
+    setIsLoading(true);
     setInputText('');
 
     const newChatMessages = [
@@ -44,10 +50,20 @@ function ChatInput({ chatMessages, setChatMessages }) {
         id: newChatMessages.length + 1,
       },
     ]);
+
+    setIsLoading(false);
   }
 
   function clearMessages() {
     setChatMessages([]);
+  }
+
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      sendMessage();
+    } else if (event.key === 'Escape') {
+      setInputText('');
+    }
   }
 
   return (
@@ -57,6 +73,7 @@ function ChatInput({ chatMessages, setChatMessages }) {
         type="text"
         placeholder="Ask Chatbot anything..."
         onChange={saveInputText}
+        onKeyDown={handleKeyDown}
         value={inputText}
       />
       <button className="send-button" onClick={sendMessage}>
