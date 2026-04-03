@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import ChatInput from './components/ChatInput';
 import ChatMessages from './components/ChatMessages';
 import robotImage from './assets/robot.png';
-import './App.css';
 
 function App() {
   const [chatMessages, setChatMessages] = useState(
@@ -21,11 +20,14 @@ function App() {
       <title>{title}</title>
       <link rel="icon" type="image/png" href={robotImage} />
 
-      <div className="app-container">
-        {chatMessages.length === 0 && (
-          <p className="welcome-message">Welcome to Chatbot! Send a message to get started.</p>
+      <div className="mx-auto flex h-dvh max-w-2xl flex-col">
+        {chatMessages.length === 0 ? (
+          <p className="text-gray-500 grow items-center justify-center flex">
+            Welcome to Chatbot! Send a message to get started.
+          </p>
+        ) : (
+          <ChatMessages chatMessages={chatMessages} />
         )}
-        <ChatMessages chatMessages={chatMessages} />
         <ChatInput chatMessages={chatMessages} setChatMessages={setChatMessages} />
       </div>
     </>

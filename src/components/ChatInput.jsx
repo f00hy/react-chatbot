@@ -2,7 +2,6 @@ import { useState } from 'react';
 import dayjs from 'dayjs';
 import { Chatbot } from 'supersimpledev';
 import loadingSpinnerGif from '../assets/loading-spinner.gif';
-import './ChatInput.css';
 
 function ChatInput({ chatMessages, setChatMessages }) {
   const [inputText, setInputText] = useState('');
@@ -33,7 +32,7 @@ function ChatInput({ chatMessages, setChatMessages }) {
     setChatMessages([
       ...newChatMessages,
       {
-        message: <img src={loadingSpinnerGif} className="loading-spinner" />,
+        message: <img src={loadingSpinnerGif} className="h-7 -my-1" />,
         sender: 'robot',
         time: null,
         id: newChatMessages.length + 1,
@@ -67,19 +66,25 @@ function ChatInput({ chatMessages, setChatMessages }) {
   }
 
   return (
-    <div className="chat-input-container">
+    <div className="flex gap-3 mb-8">
       <input
-        className="chat-input"
+        className="px-4 py-2.5 rounded-xl border border-gray-500 text-base grow focus:outline-none focus:ring-1 focus:ring-gray-500"
         type="text"
         placeholder="Ask Chatbot anything..."
         onChange={saveInputText}
         onKeyDown={handleKeyDown}
         value={inputText}
       />
-      <button className="send-button" onClick={sendMessage}>
+      <button
+        className="px-5 py-2.5 rounded-xl text-base cursor-pointer bg-green-600 text-white hover:bg-green-700 transition-colors duration-200"
+        onClick={sendMessage}
+      >
         Send
       </button>
-      <button className="clear-button" onClick={clearMessages}>
+      <button
+        className="px-5 py-2.5 rounded-xl text-base cursor-pointer bg-gray-200 text-black hover:bg-gray-300 transition-colors duration-200"
+        onClick={clearMessages}
+      >
         Clear
       </button>
     </div>

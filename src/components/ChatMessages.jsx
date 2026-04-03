@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react';
 import ChatMessage from './ChatMessage';
-import './ChatMessages.css';
 
 function useAutoScroll(dependencies) {
   const containerRef = useRef(null);
@@ -19,7 +18,10 @@ function ChatMessages({ chatMessages }) {
   const chatMessagesRef = useAutoScroll([chatMessages]);
 
   return (
-    <div className="chat-messages-container" ref={chatMessagesRef}>
+    <div
+      className="grow mt-5 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      ref={chatMessagesRef}
+    >
       {chatMessages.map((chatMessage) => {
         return (
           <ChatMessage
