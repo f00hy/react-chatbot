@@ -12,5 +12,5 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
-  base: '/react-chatbot-demo/',
+  base: '/react-chatbot/',
 });
