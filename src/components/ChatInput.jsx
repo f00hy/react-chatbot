@@ -1,11 +1,16 @@
-import { useState } from 'react';
 import dayjs from 'dayjs';
-import { Chatbot } from 'supersimpledev';
+import { useMemo, useState } from 'react';
+// import { Chatbot } from 'supersimpledev';
+import { GoogleGenAI } from '@google/genai';
 import loadingSpinnerGif from '../assets/loading-spinner.gif';
+
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+const model = import.meta.env.VITE_GEMINI_MODEL;
 
 function ChatInput({ chatMessages, setChatMessages }) {
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const ai = useMemo(() => new GoogleGenAI({ apiKey }), []);
 
   function saveInputText(event) {
     setInputText(event.target.value);
@@ -39,16 +44,39 @@ function ChatInput({ chatMessages, setChatMessages }) {
       },
     ]);
 
-    const response = await Chatbot.getResponseAsync(inputText);
-    setChatMessages([
-      ...newChatMessages,
-      {
-        message: response,
-        sender: 'robot',
-        time: dayjs().format('h:mm A'),
-        id: newChatMessages.length + 1,
+    // const response = await Chatbot.getResponseAsync(inputText);
+    // setChatMessages([
+    //   ...newChatMessages,
+    //   {
+    //     message: response,
+    //     sender: 'robot',
+    //     time: dayjs().format('h:mm A'),
+    //     id: newChatMessages.length + 1,
+    //   },
+    // ]);
+
+    const response = await ai.models.generateContentStream({
+      model,
+      contents: inputText,
+      config: {
+        systemInstruction:
+          'You are a helpful assistant that can answer questions and help with tasks.',
       },
-    ]);
+    });
+
+    let responseText = '';
+    for await (const chunk of response) {
+      responseText += chunk.text;
+      setChatMessages([
+        ...newChatMessages,
+        {
+          message: responseText,
+          sender: 'robot',
+          time: dayjs().format('h:mm A'),
+          id: newChatMessages.length + 1,
+        },
+      ]);
+    }
 
     setIsLoading(false);
   }
