@@ -19,7 +19,7 @@ function ChatMessages({ chatMessages }) {
 
   return (
     <div
-      className="grow mt-5 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      className="mt-5 grow overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       ref={chatMessagesRef}
     >
       {chatMessages.map((chatMessage) => {
