@@ -55,13 +55,20 @@ function ChatInput({ chatMessages, setChatMessages }) {
     //   },
     // ]);
 
-    const response = await ai.models.generateContentStream({
+    const chat = ai.chats.create({
       model,
-      contents: inputText,
       config: {
         systemInstruction:
           'You are a helpful assistant that can answer questions and help with tasks.',
       },
+      history: chatMessages.map((message) => ({
+        role: message.sender === 'user' ? 'user' : 'model',
+        parts: [{ text: message.message }],
+      })),
+    });
+
+    const response = await chat.sendMessageStream({
+      message: inputText,
     });
 
     let responseText = '';
