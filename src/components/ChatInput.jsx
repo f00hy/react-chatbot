@@ -101,7 +101,7 @@ function ChatInput({ chatMessages, setChatMessages }) {
   }
 
   return (
-    <div className="flex gap-3 mb-8">
+    <div className="flex gap-3 mb-6">
       <input
         className="px-4 py-2.5 rounded-xl border border-gray-500 text-base grow focus:outline-none focus:ring-1 focus:ring-gray-500"
         type="text"
