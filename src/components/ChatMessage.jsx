@@ -11,13 +11,16 @@ function ChatMessage({ message, sender, time }) {
         className="w-11 h-11 shrink-0 rounded-full object-cover"
         alt={sender}
       />
-      <div className="mx-3 mb-4 max-w-md wrap-break-word rounded-xl bg-gray-100 px-4 pt-4 pb-3">
-        {typeof message === 'string' ? (
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{message}</ReactMarkdown>
-        ) : (
-          message
-        )}
-        {/* {message} */}
+      <div
+        className={`mx-3 mb-4 rounded-xl bg-gray-100 px-4 pt-4 pb-3 ${sender === 'user' ? 'max-w-xs' : 'max-w-lg'}`}
+      >
+        <div className="overflow-x-auto wrap-break-word [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {typeof message === 'string' ? (
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{message}</ReactMarkdown>
+          ) : (
+            message
+          )}
+        </div>
         {time && <div className="text-sm text-gray-500 mt-1 text-right">{time}</div>}
       </div>
     </div>
