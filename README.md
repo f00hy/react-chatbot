@@ -18,7 +18,7 @@ The live demo is hosted at: https://f00hy.github.io/react-chatbot/
   - [Configuration](#configuration)
   - [Switching Response Modes](#switching-response-modes)
   - [Lint and Format](#lint-and-format)
-- [Build & Deploy](#build--deploy)
+- [Build and Deploy](#build-and-deploy)
   - [GitHub Pages](#github-pages)
 - [Project Structure](#project-structure)
 - [TODO](#todo)
@@ -37,7 +37,7 @@ The live demo is hosted at: https://f00hy.github.io/react-chatbot/
 ## Tech Stack
 
 - React
-- TailwindCSS
+- Tailwind CSS
 - `@google/genai` for Gemini LLM responses
 - `supersimpledev` for simulated chatbot responses ([npm](https://www.npmjs.com/package/supersimpledev))
 - `dayjs` for formatting timestamps
@@ -124,7 +124,7 @@ pnpm lint
 pnpm format
 ```
 
-## Build & Deploy
+## Build and Deploy
 
 ```bash
 pnpm build
@@ -153,4 +153,10 @@ This matches the live demo URL so assets routing work correctly when hosted unde
 
 ## Acknowledgements
 
-This project was built by following the [React Tutorial](https://www.youtube.com/watch?v=TtPXvEcE11E) by **SuperSimpleDev**.
+The foundational code for this project was built by following the [React Tutorial](https://www.youtube.com/watch?v=TtPXvEcE11E) by **SuperSimpleDev**.
+
+While the core architecture follows the tutorial, I implemented the following features to expand the project:
+
+- Redesigned the UI using Tailwind CSS.
+- Integrated LLM for chatbot response via Gemini API.
+- Created a Vite pipeline for GitHub Pages deployment.
